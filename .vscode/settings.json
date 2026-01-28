@@ -1,3 +1,18 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "sqltools.connections": [
+        {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": true
+                }
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "connectString": "postgresql://mexphillips:OFLPDDfba6isk78V5ETAgydNBvXBsEvN@dpg-d5o8tnfgi27c73ehoia0-a.virginia-postgres.render.com/cse340_ldif",
+            "name": "render.com"
+        }
+    ]
 }
