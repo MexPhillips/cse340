@@ -11,8 +11,8 @@
             "previewLimit": 50,
             "server": "localhost",
             "driver": "PostgreSQL",
-            "connectString": "postgresql://mexphillips:OFLPDDfba6isk78V5ETAgydNBvXBsEvN@dpg-d5o8tnfgi27c73ehoia0-a.virginia-postgres.render.com/cse340_ldif",
-            "name": "render.com"
+            "name": "Render",
+            "connectString": "postgresql://cse340_3sn3_user:FrWst5fnlHK5TVAvLQPMNFYir8gxf0uq@dpg-d5uan9kr85hc73a2jt60-a.virginia-postgres.render.com/cse340_3sn3"
         }
     ]
 }
