@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const path = require('path')
 
 function formatPrice(value) {
   const num = Number(value) || 0
@@ -14,7 +15,8 @@ function buildVehicleDetailHTML(v) {
   const title = `${v.inv_make} ${v.inv_model}`
   const price = formatPrice(v.inv_price)
   const mileage = formatMileage(v.inv_miles)
-  const imageUrl = v.inv_image || "/images/vehicles/no-image.png"
+  const imageFile = v.inv_image ? path.basename(v.inv_image) : 'no-image.png'
+  const imageUrl = '/images/vehicles/' + imageFile
 
   const html = `
     <article class="vehicle-detail__card" aria-labelledby="vehicle-title">
@@ -85,7 +87,10 @@ Util.buildClassificationGrid = async function (data) {
     grid = '<ul id="inv-display">'
     data.forEach((vehicle) => {
       grid += '<li>'
-      grid += '<a href="/inv/detail/' + vehicle.inv_id + '" title="View ' + vehicle.inv_make + " " + vehicle.inv_model + ' details"><img src="' + vehicle.inv_thumbnail + '" alt="Image of ' + vehicle.inv_make + " " + vehicle.inv_model + ' on CSE Motors" /></a>'
+      // normalize thumbnail path to /images/vehicles/<file>
+      const thumbFile = vehicle.inv_thumbnail ? path.basename(vehicle.inv_thumbnail) : 'no-image-tn.png'
+      const thumb = '/images/vehicles/' + thumbFile
+      grid += '<a href="/inv/detail/' + vehicle.inv_id + '" title="View ' + vehicle.inv_make + " " + vehicle.inv_model + ' details"><img src="' + thumb + '" alt="Image of ' + vehicle.inv_make + " " + vehicle.inv_model + ' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
       grid += "<hr />"
       grid += "<h2>"
