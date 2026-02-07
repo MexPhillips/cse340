@@ -111,7 +111,9 @@ Util.buildSingleVehicleDisplay = async (vehicle) => {
   let svd = '<section id="vehicle-display">'
   svd += "<div>"
   svd += '<section class="imagePrice">'
-  svd += "<img src='" + vehicle.inv_image + "' alt='Image of " + vehicle.inv_make + " " + vehicle.inv_model + " on cse motors' id='mainImage'>"
+  const imageFile = vehicle.inv_image ? path.basename(vehicle.inv_image) : 'no-image.png'
+  const imageUrl = '/images/vehicles/' + imageFile
+  svd += "<img src='" + imageUrl + "' alt='Image of " + vehicle.inv_make + " " + vehicle.inv_model + " on cse motors' id='mainImage'>"
   svd += "</section>"
   svd += '<section class="vehicleDetail">'
   svd += "<h3> " + vehicle.inv_make + " " + vehicle.inv_model + " Details</h3>"

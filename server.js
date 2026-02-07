@@ -13,6 +13,7 @@ const static = require("./routes/static")
 const pages = require("./routes/pages")
 const invRoutes = require("./routes/inventoryRoute")
 const baseController = require("./controllers/baseController")
+const errorController = require("./controllers/errorController")
 
 /* ***********************
  * View Engine and Templates
@@ -29,6 +30,26 @@ app.get("/", baseController.buildHome)
 app.use(pages)
 app.use('/inv', invRoutes)
 app.use(static)
+
+/* ***********************
+ * Express Error Handlers
+ *************************/
+// 404 handler
+app.use((req, res, next) => {
+  res.status(404).render('errors/error', {
+    title: 'Page Not Found',
+    message: 'Sorry, the page you requested does not exist.'
+  })
+})
+
+// 500 error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).render('errors/error', {
+    title: 'Server Error',
+    message: 'Something went wrong on our end. Please try again later.'
+  })
+})
 
 /* ***********************
  * Local Server Information
